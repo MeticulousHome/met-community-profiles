@@ -56,7 +56,6 @@ async function generateProfilePages() {
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import Plotly from 'plotly.js-dist-min';
 
 const baseUrl = ref('');
 const profileData = JSON.parse(\`${safeJson}\`);
@@ -194,7 +193,9 @@ const layout = {
 };
 
 onMounted(() => {
-  Plotly.newPlot('plot', traces, layout);
+  import('plotly.js-dist-min').then((Plotly) => {
+    Plotly.newPlot('plot', traces, layout);
+  });
 });
 </script>
 
