@@ -1,6 +1,6 @@
 name: Validate JSON Files
 
-on: 
+on:
   push:
     branches:
       - main
@@ -28,3 +28,26 @@ jobs:
         run: |
           SCHEMA_URL="https://raw.githubusercontent.com/MeticulousHome/espresso-profile-schema/main/schema.json"
           find docs/profiles-json -name '*.json' -exec bash -c 'echo "Validating $1" && check-jsonschema --schemafile "$0" "$1"' "$SCHEMA_URL" {} \;
+
+  check-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Not needed if lastUpdated is not enabled
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Install dependencies
+        run: npm install
+      - name: Run profile generation script
+        run: |
+          cd ${{ github.workspace }}
+          node generateprofiles.js
+      - name: Build with VitePress
+        run: npm run build
