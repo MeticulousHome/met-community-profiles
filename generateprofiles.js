@@ -55,7 +55,7 @@ async function generateProfilePages() {
       const profileContent = `# ${profileTitle}
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const baseUrl = ref('');
 const profileData = JSON.parse(\`${safeJson}\`);
@@ -91,6 +91,112 @@ const sendProfile = async () => {
     console.error('Error sending profile:', error);
   }
 };
+
+// plotting code
+const colorMap = {
+  pressure: '#3cc4ff',         // Cyan-blue, from iOS App Screenshot
+  flow: '#3cffcb',             // Aqua-green, from iOS App Screenshot
+  weight: '#ffe36f',           // Yellow-gold, from iOS App Screenshot
+  'grav flow': '#ff9051',      // Coral-orange, from iOS App Screenshot
+  power: '#ff4444',            // Red
+  'inferred time': '#ffa500',  // Orange
+};
+
+const traces = [];
+const finalXList = [];
+let finalX = 0;
+const legendTracker = new Set();
+for (const stage of profileData.stages) {
+  const X = [];
+  const Y = [];
+  const type = stage.type;
+  const plotData = stage.dynamics.points;
+
+  for (const [xRaw, yRaw] of plotData) {
+    let x = typeof xRaw === 'string' 
+      ? profileData.variables.find(v => xRaw.includes(v.key))?.value || 0 
+      : xRaw;
+    let y = typeof yRaw === 'string' 
+      ? profileData.variables.find(v => yRaw.includes(v.key))?.value || 0 
+      : yRaw;
+    X.push(x);
+    Y.push(y);
+  }
+
+  if (plotData.length === 1) {
+    X.push(10); // inferred duration
+    Y.push(Y[Y.length - 1]);
+    traces.push({
+      x: X.map(x => x + finalX),
+      y: [-0.3, -0.3],
+      mode: 'lines',
+      line: { color: colorMap['inferred time'], width: 2 },
+      showlegend: !legendTracker.has('inferred time'),
+      name: 'inferred time'
+    });
+    legendTracker.add('inferred time');
+  }
+
+  const xShifted = X.map(x => x + finalX);
+
+  traces.push({
+    x: xShifted,
+    y: Y,
+    mode: 'lines+markers',
+    name: type,
+    line: { color: colorMap[type], width: 3 },
+    showlegend: !legendTracker.has(type),
+    ...(type === 'power' && { yaxis: 'y2' })
+  });
+
+  legendTracker.add(type);
+
+  finalX += X[X.length - 1];
+  finalXList.push(finalX);
+}
+
+const layout = {
+  title: \`\${profileData.name} - Interactive Plot\`,
+  paper_bgcolor: '#272727',
+  plot_bgcolor: '#272727',
+  font: { color: 'white' },
+  margin: { l: 60, r: 60, t: 60, b: 60, pad: 10 },
+  xaxis: {
+    title: { text: 'Very rough time estimate / inference', font: { color: 'white' } },
+    gridcolor: '#555',
+    zeroline: false,
+    automargin: true
+  },
+  yaxis: {
+    title: { text: 'flow [ml/s] / pressure [bar]', font: { color: 'white' } },
+    range: [-0.5, 10.5],
+    gridcolor: '#555',
+    zeroline: false,
+    automargin: true
+  },
+  yaxis2: {
+    title: { text: 'power [%]', font: { color: 'white' } },
+    range: [-5, 105],
+    overlaying: 'y',
+    side: 'right',
+    gridcolor: '#555',
+    automargin: true
+  },
+  showlegend: true,
+  legend: {
+    x: 0.5,
+    y: 1.15,
+    xanchor: 'center',
+    orientation: 'h',
+    font: { color: 'white' }
+  } 
+};
+
+onMounted(() => {
+  import('plotly.js-dist-min').then((Plotly) => {
+    Plotly.newPlot('plot', traces, layout);
+  });
+});
 </script>
 
 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
@@ -101,6 +207,7 @@ const sendProfile = async () => {
     Install Profile to Meticulous Device
   </button>
 </div>
+<div id="plot" style="width: 100%; height: 400px; border-radius: 8px; overflow: hidden;"></div>
 
 \`\`\`json
 ${prettyJson}

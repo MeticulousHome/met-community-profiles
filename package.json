@@ -19,6 +19,8 @@
     }
   },
   "dependencies": {
+    "@types/plotly.js": "^3.0.2",
+    "plotly.js-dist-min": "^3.0.1",
     "uuid": "^11.1.0"
   }
 }
