@@ -1,0 +1,247 @@
+{
+    "name": "Adaptive v2",
+    "id": "5d6357db-4cf0-4a3e-9166-04bbccf99e59",
+    "author": "Decent",
+    "author_id": "f78d9269-3f6d-46ee-975f-da4dfcea5ab8",
+    "previous_authors": [],
+    "display": {
+        "shortDescription": "For light/medium roasts. v2 meant for grinders/burrs with low fines, like SSP 98/102 and Kafateks.",
+        "description": "Imported from the Decent Visualizer. translated: This curve has a pre-infusion phase, then ramps up to 8.6 bar, then senses the current flow to keep it steady. I believe this can make better espresso when not tried perfectly. Like this - you are trying for a constant flow rate, not the shape of the pressure curve or flow curve. Longer brews with faster flow rates may taste better. In extreme cases, if you grind coarse enough, this curve can be similar to what a Rao Allongé does.\n\noriginal text: 此曲线有预浸泡阶段，然后升压至 8.6 巴，然后检测当前流量以保持稳定。 我相信当没有完美地尝试时，这可能会制作出更好的浓缩咖啡。像这样——你在尝试恒定的流速，而不是压力曲线或流量曲线的形状。 较长的萃取时间，更快的流速可能味道更好。 极端情况下，如果您研磨得足够粗，这种曲线可以类似于 Rao Allongé 的作用。\n\nDownloaded from Visualizer",
+        "image": ""
+    },
+    "temperature": 93,
+    "final_weight": 32,
+    "variables": [],
+    "stages": [
+        {
+            "name": "Prefill",
+            "key": "prefill_1",
+            "type": "flow",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        8
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 5,
+                    "relative": true,
+                    "comparison": ">="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "pressure",
+                    "value": 3
+                }
+            ]
+        },
+        {
+            "name": "Fill",
+            "key": "fill_2",
+            "type": "flow",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        8
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 12,
+                    "relative": true,
+                    "comparison": ">="
+                },
+                {
+                    "type": "pressure",
+                    "value": 3,
+                    "relative": false,
+                    "comparison": ">="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "pressure",
+                    "value": 3
+                }
+            ]
+        },
+        {
+            "name": "Compressing",
+            "key": "compressing_3",
+            "type": "pressure",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        3
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 12,
+                    "relative": true,
+                    "comparison": ">="
+                },
+                {
+                    "type": "flow",
+                    "value": 3,
+                    "relative": false,
+                    "comparison": "<="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "flow",
+                    "value": 6.8
+                }
+            ]
+        },
+        {
+            "name": "Dripping",
+            "key": "dripping_4",
+            "type": "pressure",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        0.1
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 6,
+                    "relative": true,
+                    "comparison": ">="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "flow",
+                    "value": 6.8
+                }
+            ]
+        },
+        {
+            "name": "Pressurize",
+            "key": "pressurize_5",
+            "type": "pressure",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        0.1
+                    ],
+                    [
+                        6,
+                        11
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 6,
+                    "relative": true,
+                    "comparison": ">="
+                },
+                {
+                    "type": "pressure",
+                    "value": 8.8,
+                    "relative": false,
+                    "comparison": ">="
+                }
+            ],
+            "limits": []
+        },
+        {
+            "name": "Extraction start",
+            "key": "extraction_start_6",
+            "type": "flow",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        1.5
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 0,
+                    "relative": true,
+                    "comparison": ">="
+                },
+                {
+                    "type": "pressure",
+                    "value": 0,
+                    "relative": false,
+                    "comparison": ">="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "pressure",
+                    "value": 3
+                }
+            ]
+        },
+        {
+            "name": "Extraction",
+            "key": "extraction_7",
+            "type": "flow",
+            "dynamics": {
+                "points": [
+                    [
+                        0,
+                        1.5
+                    ],
+                    [
+                        60,
+                        3.5
+                    ]
+                ],
+                "over": "time",
+                "interpolation": "linear"
+            },
+            "exit_triggers": [
+                {
+                    "type": "time",
+                    "value": 60,
+                    "relative": true,
+                    "comparison": ">="
+                }
+            ],
+            "limits": [
+                {
+                    "type": "pressure",
+                    "value": 3
+                }
+            ]
+        }
+    ]
+}
