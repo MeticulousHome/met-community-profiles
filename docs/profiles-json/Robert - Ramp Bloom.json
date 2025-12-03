@@ -29,7 +29,7 @@
     "image": "2d137d7559985c18ee3976f4347d9fcf.png",
     "accentColor": "#7A3638",
     "shortDescription": "mimic Robert Aloe's Decent profile, without temp profiling",
-    "description": "assumes 24g input to 18g basket, 5 minutes of thermal pre-infusion. For reference, Robert is using the 200um setting on the Zerno using SSP multipurpose burrs."
+    "description": "assumes 24g input to 18g basket, 5 minutes of thermal pre-infusion, and 25g output for a near 1:1 ratio, pulled typically over 90 to 230 seconds. For reference, Robert is using the 200um setting on the Zerno using SSP multipurpose burrs. yields an intense and rich shot, great with milk."
   },
   "stages": [
     {
@@ -90,15 +90,11 @@
             0.1
           ],
           [
-            45.4,
+            45,
             0.5
           ],
           [
-            120.6,
-            0.5
-          ],
-          [
-            232.9,
+            300,
             0.5
           ]
         ],
@@ -108,15 +104,9 @@
       "exit_triggers": [
         {
           "type": "time",
-          "value": 232.9,
+          "value": 300,
           "relative": true,
           "comparison": ">="
-        },
-        {
-          "type": "weight",
-          "value": 25,
-          "comparison": ">=",
-          "relative": false
         }
       ],
       "limits": [
