@@ -6,7 +6,7 @@
     "previous_authors": [],
     "display": {
         "shortDescription": "For light/medium roasts. v2 meant for grinders/burrs with low fines, like SSP 98/102 and Kafateks.",
-        "description": "Imported from the Decent Visualizer. translated: This curve has a pre-infusion phase, then ramps up to 8.6 bar, then senses the current flow to keep it steady. I believe this can make better espresso when not tried perfectly. Like this - you are trying for a constant flow rate, not the shape of the pressure curve or flow curve. Longer brews with faster flow rates may taste better. In extreme cases, if you grind coarse enough, this curve can be similar to what a Rao Allongé does.\n\noriginal text: 此曲线有预浸泡阶段，然后升压至 8.6 巴，然后检测当前流量以保持稳定。 我相信当没有完美地尝试时，这可能会制作出更好的浓缩咖啡。像这样——你在尝试恒定的流速，而不是压力曲线或流量曲线的形状。 较长的萃取时间，更快的流速可能味道更好。 极端情况下，如果您研磨得足够粗，这种曲线可以类似于 Rao Allongé 的作用。\n\nDownloaded from Visualizer",
+        "description": "Imported from the Decent Visualizer default Adaptive v2, and automatically converted.  translation: This profile has a pre-infusion phase, then ramps up to 8.6 bar, then senses the current flow to keep it steady.  I believe this can make better espresso when not tried perfectly. Like this - you are trying for a constant flow rate, not the shape of the pressure curve or flow curve. Longer brews with faster flow rates may taste better. In extreme cases, if you grind coarse enough, this curve can be similar to what a Rao Allongé does.  original text: 此曲线有预浸泡阶段，然后升压至 8.6 巴，然后检测当前流量以保持稳定。 我相信当没有完美地尝试时，这可能会制作出更好的浓缩咖啡。像这样——你在尝试恒定的流速，而不是压力曲线或流量曲线的形状。 较长的萃取时间，更快的流速可能味道更好。 极端情况下，如果您研磨得足够粗，这种曲线可以类似于 Rao Allongé 的作用。",
         "image": ""
     },
     "temperature": 93,
