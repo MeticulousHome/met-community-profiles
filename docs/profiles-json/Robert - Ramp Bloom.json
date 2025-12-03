@@ -107,6 +107,12 @@
           "value": 300,
           "relative": true,
           "comparison": ">="
+        },
+        {
+          "type": "weight",
+          "value": 25,
+          "comparison": ">="
+          "relative": false,
         }
       ],
       "limits": [
