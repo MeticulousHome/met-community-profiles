@@ -11,7 +11,7 @@
   "id": "042e6d50-b660-4150-b02b-922587885fc0",
   "isLast": true,
   "last_changed": 1747928222.5525062,
-  "name": "PSPH / Soup",
+  "name": "Bailey - PSPH / Soup",
   "previous_authors": [
     {
       "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
@@ -26,7 +26,7 @@
       "name": "Initial Saturation Duration",
       "key": "time_Initial Saturation Duration",
       "type": "time",
-      "value": 0.6
+      "value": 0.3
     },
     {
       "name": "Initial Saturation Exit Trigger",
@@ -44,7 +44,7 @@
       "name": "Puck Saturation Exit Trigger",
       "key": "weight_Percolation Trigger",
       "type": "weight",
-      "value": 8
+      "value": 6
     },
     {
       "name": "Percolation Ramp Duration",
@@ -62,7 +62,7 @@
       "name": "Perc Flowrate",
       "key": "flow_Perc Flowrate",
       "type": "flow",
-      "value": 6
+      "value": 5.5
     }
   ],
   "stages": [
