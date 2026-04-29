@@ -1,44 +1,21 @@
 {
-  "name": "Low Contact",
   "id": "9ac1a637-9092-4aa2-a035-bcdf5df932db",
+  "name": "Low Contact",
   "author": "John Barry",
-  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-  "previous_authors": [
-    {
-      "name": "Long",
-      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
-    }
-  ],
-  "temperature": 84,
-  "final_weight": 40.5,
-  "variables": [
-    {
-      "name": "Fill Pressure",
-      "key": "pressure_1",
-      "type": "pressure",
-      "value": 3
-    },
-    {
-      "name": "Extract Pressure",
-      "key": "pressure_2",
-      "type": "pressure",
-      "value": 4
-    }
-  ],
   "stages": [
     {
-      "name": "Fill",
       "key": "fill_1",
+      "name": "Fill",
       "type": "power",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             100
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -48,21 +25,21 @@
           "relative": false,
           "comparison": ">="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Dynamic Bloom",
       "key": "blooming_1",
+      "name": "Dynamic Bloom",
       "type": "flow",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             0
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -78,30 +55,53 @@
           "relative": false,
           "comparison": "<="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Extraction",
       "key": "extract_1",
+      "name": "Extraction",
       "type": "pressure",
+      "limits": [
+        {
+          "type": "flow",
+          "value": 6
+        }
+      ],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             "$pressure_2"
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
-      "exit_triggers": [],
-      "limits": [
-        {
-          "type": "flow",
-          "value": 6
-        }
-      ]
+      "exit_triggers": []
+    }
+  ],
+  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+  "variables": [
+    {
+      "key": "pressure_1",
+      "name": "Fill Pressure",
+      "type": "pressure",
+      "value": 3
+    },
+    {
+      "key": "pressure_2",
+      "name": "Extract Pressure",
+      "type": "pressure",
+      "value": 4
+    }
+  ],
+  "temperature": 92,
+  "final_weight": 40.5,
+  "previous_authors": [
+    {
+      "name": "Long",
+      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
     }
   ]
 }
