@@ -1,38 +1,21 @@
 {
-  "name": "ExDos",
   "id": "56437db5-178b-4d25-9cb0-fc320e571be0",
+  "name": "ExDos",
   "author": "John Barry",
-  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-  "previous_authors": [
-    {
-      "name": "Joe D",
-      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
-    }
-  ],
-  "temperature": 84,
-  "final_weight": 45,
-  "variables": [
-    {
-      "name": "Pressure",
-      "key": "pressure_1",
-      "type": "pressure",
-      "value": 6
-    }
-  ],
   "stages": [
     {
-      "name": "Preinfusion",
       "key": "preinfusion_1",
+      "name": "Preinfusion",
       "type": "flow",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             10
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -48,21 +31,21 @@
           "relative": true,
           "comparison": ">="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Dynamic Bloom",
       "key": "blooming_1",
+      "name": "Dynamic Bloom",
       "type": "flow",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             0
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -78,14 +61,20 @@
           "relative": true,
           "comparison": ">="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Extractamundo",
       "key": "extract_1",
+      "name": "Extractamundo",
       "type": "pressure",
+      "limits": [
+        {
+          "type": "flow",
+          "value": 4
+        }
+      ],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
@@ -96,7 +85,6 @@
             "$pressure_1"
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -106,14 +94,26 @@
           "relative": true,
           "comparison": ">="
         }
-      ],
-      "limits": [
-        {
-          "type": "flow",
-          "value": 4
-        }
       ]
     }
   ],
-  "last_changed": 1739125482.8905127
+  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+  "variables": [
+    {
+      "key": "pressure_1",
+      "name": "Pressure",
+      "type": "pressure",
+      "value": 6
+    }
+  ],
+  "temperature": 92,
+  "final_weight": 45,
+  "last_changed": 1739125482.8905127,
+  "previous_authors": [
+    {
+      "name": "Joe D",
+      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
+    }
+  ]
 }

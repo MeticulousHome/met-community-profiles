@@ -1,38 +1,21 @@
 {
-  "name": "Ultra Low Contact",
   "id": "274bed4e-fa55-4a89-87ce-fa8dcc96394d",
+  "name": "Ultra Low Contact",
   "author": "John Barry",
-  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-  "previous_authors": [
-    {
-      "name": "Long",
-      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
-      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
-    }
-  ],
-  "temperature": 84,
-  "final_weight": 45,
-  "variables": [
-    {
-      "name": "Fill Pressure",
-      "key": "pressure_1",
-      "type": "pressure",
-      "value": 1.5
-    }
-  ],
   "stages": [
     {
-      "name": "Fill",
       "key": "fill_1",
+      "name": "Fill",
       "type": "power",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             100
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -42,21 +25,21 @@
           "relative": false,
           "comparison": ">="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Bloom",
       "key": "blooming_1",
+      "name": "Bloom",
       "type": "flow",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             0
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
       "exit_triggers": [
@@ -66,25 +49,42 @@
           "relative": true,
           "comparison": ">="
         }
-      ],
-      "limits": []
+      ]
     },
     {
-      "name": "Extraction",
       "key": "extract_1",
+      "name": "Extraction",
       "type": "power",
+      "limits": [],
       "dynamics": {
+        "over": "time",
         "points": [
           [
             0,
             100
           ]
         ],
-        "over": "time",
         "interpolation": "linear"
       },
-      "exit_triggers": [],
-      "limits": []
+      "exit_triggers": []
+    }
+  ],
+  "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+  "variables": [
+    {
+      "key": "pressure_1",
+      "name": "Fill Pressure",
+      "type": "pressure",
+      "value": 1.5
+    }
+  ],
+  "temperature": 92,
+  "final_weight": 45,
+  "previous_authors": [
+    {
+      "name": "Long",
+      "author_id": "d9123a0a-d3d7-40fd-a548-b81376e43f23",
+      "profile_id": "0cdf18ca-d72e-4776-8e25-7b3279907dce"
     }
   ]
 }
