@@ -31,7 +31,7 @@
         {
           "type": "pressure",
           "value": 1,
-          "comparison": ">=",
+          "comparison": ">",
           "relative": false
         }
       ],

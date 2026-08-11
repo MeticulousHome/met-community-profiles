@@ -115,6 +115,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { v4 as uuid_v4 } from 'uuid';
+import { comparisonForDecentCondition, STRICT_GREATER_THAN } from './profileComparisons.js';
 // TODO there seems to be some kind of fancy export {data: }... logic? How to use that?
 const title = ref('');
 const author = ref('');
@@ -223,7 +224,7 @@ function convert() {
               type: "time",
               value: parseFloat(step.seconds),
               relative: true,
-              comparison: '>=',
+              comparison: STRICT_GREATER_THAN,
         }
       )
     }
@@ -233,7 +234,7 @@ function convert() {
               type: step.exit.type,
               value: parseFloat(step.exit.value),
               relative: false,
-              comparison: step.exit.condition == "over" ? '>=' : '<=',
+              comparison: comparisonForDecentCondition(step.exit.condition),
         }
       )
     }

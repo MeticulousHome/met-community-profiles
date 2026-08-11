@@ -28,13 +28,13 @@
           "type": "time",
           "value": 30,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         },
         {
           "type": "pressure",
           "value": 5,
           "relative": false,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "type": "time",
           "value": 30,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     }

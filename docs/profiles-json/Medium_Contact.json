@@ -23,7 +23,7 @@
           "type": "pressure",
           "value": "$pressure_1",
           "relative": false,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -51,7 +51,7 @@
           "type": "time",
           "value": 1,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         },
         {
           "type": "pressure",

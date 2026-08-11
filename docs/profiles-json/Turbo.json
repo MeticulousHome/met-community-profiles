@@ -43,7 +43,7 @@
           "type": "time",
           "value": 30,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         }
       ],
       "limits": [

@@ -28,7 +28,7 @@
           "type": "time",
           "value": 2,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -57,13 +57,13 @@
           "type": "time",
           "value": 25,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         },
         {
           "type": "pressure",
           "value": 1.5,
           "relative": false,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -92,7 +92,7 @@
           "type": "time",
           "value": 12,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -116,7 +116,7 @@
           "type": "time",
           "value": 8,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -144,13 +144,13 @@
           "type": "time",
           "value": 55,
           "relative": true,
-          "comparison": ">="
+          "comparison": ">"
         },
         {
           "type": "flow",
           "value": 2.8,
           "relative": false,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
@@ -174,7 +174,7 @@
           "type": "flow",
           "value": 2.8,
           "relative": false,
-          "comparison": ">="
+          "comparison": ">"
         }
       ]
     },
