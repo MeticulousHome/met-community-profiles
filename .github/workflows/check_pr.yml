@@ -32,7 +32,7 @@ jobs:
 
       - name: Validate JSON files
         run: |
-          SCHEMA_URL="https://raw.githubusercontent.com/MeticulousHome/espresso-profile-schema/c019a8d64feac3ae02e66484867a10ca27c66330/schema.json"
+          SCHEMA_URL="https://raw.githubusercontent.com/MeticulousHome/espresso-profile-schema/711c295bc1c6f9c3dd314bb824528cfd8108041b/schema.json"
           find docs/profiles-json -name '*.json' -exec bash -c 'echo "Validating $1" && check-jsonschema --schemafile "$0" "$1"' "$SCHEMA_URL" {} \;
 
       - name: Install site dependencies

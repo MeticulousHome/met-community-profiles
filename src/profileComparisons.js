@@ -13,6 +13,30 @@ export function comparisonForDecentCondition(condition) {
   return condition === 'over' ? STRICT_GREATER_THAN : '<=';
 }
 
+export function exitTriggersForDecentStep(step) {
+  const exitTriggers = [];
+
+  if (step.seconds != 127) {
+    exitTriggers.push({
+      type: 'time',
+      value: parseFloat(step.seconds),
+      relative: true,
+      comparison: STRICT_GREATER_THAN,
+    });
+  }
+
+  if (step.exit) {
+    exitTriggers.push({
+      type: step.exit.type,
+      value: parseFloat(step.exit.value),
+      relative: false,
+      comparison: comparisonForDecentCondition(step.exit.condition),
+    });
+  }
+
+  return exitTriggers;
+}
+
 export function migrateProfileComparisons(profile) {
   if (!profile || !Array.isArray(profile.stages)) {
     return { profile, changed: false };

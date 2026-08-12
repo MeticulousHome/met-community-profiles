@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import {
   canonicalizeProfileComparisons,
   comparisonForDecentCondition,
+  exitTriggersForDecentStep,
   migrateProfileComparisons,
   NUMERIC_EXIT_TRIGGER_TYPES,
   STRICT_GREATER_THAN,
@@ -59,6 +60,26 @@ test('maps Decent over to strict greater-than and preserves less conditions', ()
   assert.equal(comparisonForDecentCondition('over'), '>');
   assert.equal(comparisonForDecentCondition('under'), '<=');
   assert.equal(comparisonForDecentCondition('less'), '<=');
+});
+
+test('generates canonical Decent exit triggers for every numeric trigger type', () => {
+  for (const type of NUMERIC_EXIT_TRIGGER_TYPES) {
+    const [overTrigger] = exitTriggersForDecentStep({
+      seconds: 127,
+      exit: { type, value: '0', condition: 'over' },
+    });
+    const [underTrigger] = exitTriggersForDecentStep({
+      seconds: 127,
+      exit: { type, value: '1.5', condition: 'under' },
+    });
+
+    assert.deepEqual(overTrigger, { type, value: 0, relative: false, comparison: '>' });
+    assert.deepEqual(underTrigger, { type, value: 1.5, relative: false, comparison: '<=' });
+  }
+
+  assert.deepEqual(exitTriggersForDecentStep({ seconds: '12.5' }), [
+    { type: 'time', value: 12.5, relative: true, comparison: '>' },
+  ]);
 });
 
 test('published profiles are already canonical', () => {

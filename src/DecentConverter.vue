@@ -115,7 +115,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { v4 as uuid_v4 } from 'uuid';
-import { comparisonForDecentCondition, STRICT_GREATER_THAN } from './profileComparisons.js';
+import { exitTriggersForDecentStep } from './profileComparisons.js';
 // TODO there seems to be some kind of fancy export {data: }... logic? How to use that?
 const title = ref('');
 const author = ref('');
@@ -217,27 +217,7 @@ function convert() {
       ])
     }
 
-    let exit_triggers = [];
-    if (step.seconds != 127) {
-      exit_triggers.push(
-        {
-              type: "time",
-              value: parseFloat(step.seconds),
-              relative: true,
-              comparison: STRICT_GREATER_THAN,
-        }
-      )
-    }
-    if (step.exit) {
-      exit_triggers.push(
-        {
-              type: step.exit.type,
-              value: parseFloat(step.exit.value),
-              relative: false,
-              comparison: comparisonForDecentCondition(step.exit.condition),
-        }
-      )
-    }
+    const exit_triggers = exitTriggersForDecentStep(step);
 
     targetJson.stages.push({
       name: step.name,
